@@ -1,0 +1,17 @@
+@import "./assets/core";
+@import "./assets/variable";
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+
+    .container {
+        position: relative;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+}
+
+body {
+    background-color: $body_color;
+}
