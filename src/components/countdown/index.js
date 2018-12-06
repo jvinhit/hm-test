@@ -38,11 +38,13 @@ class CountDown extends Component {
         const validatorsHour = validators.validateHour(this.state.hour);
         const validatorsMinute = validators.validateMinute(this.state.minute);
         const validatorsSeconds = validators.validateSeconds(this.state.seconds);
+        const validatorsAll = validators.validateAll(this.state.year, this.state.month, this.state.day, this.state.hour, this.state.minute, this.state.seconds);
+
         if (validatorsYear) {
             errors.year = validatorsYear;
         }
         if (validatorsMonth) {
-            errors.month = validatorsYear;
+            errors.month = validatorsMonth;
         }
         if (validatorsDay) {
             errors.day = validatorsDay;
@@ -56,7 +58,9 @@ class CountDown extends Component {
         if (validatorsSeconds) {
             errors.seconds = validatorsSeconds;
         } // for check if length
-
+        if (validatorsAll) {
+            errors.year = validatorsAll;
+        }
         this.setState({ errors });
     };
     onChangeDuration = e => {
@@ -67,7 +71,7 @@ class CountDown extends Component {
         this.setState({ isRunning: true });
         this.validate();
         if (Object.keys(this.state.errors).length > 0) {
-            // Có nghĩa là có lỗi còn làm gì tiếp ?
+            // có lỗi còn làm gì tiếp ?
         } else {
             this.interval = setInterval(() => {
                 const endDateString = `${this.state.year}/${this.state.month}/${this.state.day} ${this.state.hour}:${this.state.minute}:${this.state.seconds}`;
@@ -75,6 +79,7 @@ class CountDown extends Component {
                 if (date) {
                     this.setState({ remainTime: { ...date } });
                 } else {
+                    console.log('DONE');
                     this.stop();
                 }
             }, 1000);
@@ -106,7 +111,7 @@ class CountDown extends Component {
                         error={this.state.errors.year}
                         value={`${this.state.year}`}
                         min="2018"
-                        onBlur={this.validate}
+                        onBlur={() => this.validate()}
                     />
                     <InputGroup
                         type="number"
@@ -169,7 +174,7 @@ class CountDown extends Component {
                         onBlur={this.validate}
                     />
                 </div>
-                <Button type="button" textLabel="SetTime" onClick={this.onStart} disabled={this.state.isRunning ? 'disabled' : null} />
+                <Button type="button" textLabel="SetTime" onClick={this.onStart} disabled={this.state.isRunning || Object.keys(this.state.errors).length > 0 ? 'disabled' : null} />
                 <div className="countdown__section">
                     <ul>{this.renderCountDown()}</ul>
                 </div>

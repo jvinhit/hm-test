@@ -9,22 +9,20 @@ export const validators = {
             }
         }
     },
-    validateMonth: (day, month, years) => {
-        if (isEmpty(day)) {
+    validateMonth: value => {
+        if (isEmpty(value)) {
             return 'Month Empty';
         } else {
-            return day < 1 || day > 12
-                ? 'Month Invalid'
-                : isValid(day, month - 1, years)
-                ? `${day} not in month`
-                : null;
+            return value < 1 || value > 12 ? 'Month Invalid' : null;
         }
     },
-    validateDay: value => {
-        if (isEmpty(value)) {
+    validateDay: (day, month, years) => {
+        if (isEmpty(day)) {
             return 'Day Empty';
         } else {
-            return value < 1 || value > 31 ? 'Day Invalid' : null;
+            if (validators.validateYear(years) === undefined) {
+                return day < 1 || day > 31 ? 'Day Invalid' : !isValidDayinM(day, month - 1, years) ? `${day} not in month` : null;
+            }
         }
     },
     validateHour: value => {
@@ -46,6 +44,31 @@ export const validators = {
             return 'Seconds Empty';
         } else {
             return value < 0 || value > 59 ? 'Seconds Invalid' : null;
+        }
+    },
+    validateAll: (year, month, day, hour, minute, seconds) => {
+        const currentDate = new Date();
+
+        if (year === currentDate.getFullYear()) {
+            if (month < currentDate.getMonth() + 1) {
+                return 'Check all Pls';
+            } else if (month === currentDate.getMonth() + 1) {
+                if (day < currentDate.getDate()) {
+                    return 'Check all Pls';
+                } else if (day === currentDate.getDate()) {
+                    if (hour < currentDate.getHours()) {
+                        return 'Check all Pls';
+                    } else if (hour === currentDate.getHours()) {
+                        if (minute < currentDate.getMinutes()) {
+                            return 'Check all Pls';
+                        } else if (minute === currentDate.getMinutes()) {
+                            if (seconds < currentDate.getSeconds() + 1) {
+                                return 'Check all Pls';
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 };
@@ -104,12 +127,18 @@ export const operations = {
         return value;
     }
 };
+Number.isNaN =
+    Number.isNaN ||
+    function(value) {
+        return typeof value === 'number' && isNaN(value);
+    };
 function isEmpty(value) {
     return (
         value === undefined ||
         value === null ||
         (typeof value === 'object' && Object.keys(value).length === 0) ||
-        (typeof value === 'string' && value.trim().length === 0)
+        (typeof value === 'string' && value.trim().length === 0) ||
+        (typeof value === 'number' && Number.isNaN(value))
     );
 }
 function daysInMonth(m, y) {
@@ -127,6 +156,7 @@ function daysInMonth(m, y) {
     }
 }
 
-function isValid(d, m, y) {
-    return m >= 0 && m < 12 && d > 0 && d <= daysInMonth(m, y);
+function isValidDayinM(d, m, y) {
+    const daysInM = daysInMonth(m, y);
+    return m >= 0 && m < 12 && d > 0 && d <= daysInM;
 }
