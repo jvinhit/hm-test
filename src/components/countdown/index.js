@@ -10,10 +10,10 @@ class CountDown extends Component {
         super(props);
         this.state = {
             year: 2019,
-            month: 1,
-            day: 1,
-            hour: 0,
-            minute: 0,
+            month: 12,
+            day: 7,
+            hour: 2,
+            minute: 16,
             seconds: 0,
             remainTime: {
                 year: 0,
@@ -24,7 +24,8 @@ class CountDown extends Component {
                 seconds: 0
             },
             isRunning: false,
-            errors: {}
+            errors: {},
+            messageDone: ''
         };
     }
     componentDidMount() {}
@@ -70,6 +71,7 @@ class CountDown extends Component {
     onStart = () => {
         this.setState({ isRunning: true });
         this.validate();
+        debugger;
         if (Object.keys(this.state.errors).length > 0) {
             // có lỗi còn làm gì tiếp ?
         } else {
@@ -86,6 +88,9 @@ class CountDown extends Component {
         }
     };
     stop() {
+        this.setState({ messageDone: 'DONE' });
+        // this.setState({ errors: {} });
+        this.isRunning = false;
         clearInterval(this.interval);
     }
     renderCountDown() {
@@ -178,6 +183,7 @@ class CountDown extends Component {
                 <div className="countdown__section">
                     <ul>{this.renderCountDown()}</ul>
                 </div>
+                <div className="message-section">{this.state.messageDone}</div>
             </div>
         );
     }

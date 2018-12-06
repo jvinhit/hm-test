@@ -116,7 +116,6 @@ export const operations = {
         }
 
         remain.seconds = remainTime;
-        console.log(remain);
         return remain;
     },
     addLeadingZeros: value => {
