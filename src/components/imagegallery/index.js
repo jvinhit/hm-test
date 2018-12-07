@@ -17,11 +17,14 @@ class ImageGallery extends Component {
         }
     }
     renderItem() {
-        return this.props.source.map((item, index) => (
-            <Item key={index} index={index} activeIndex={this.state.activeIndex} isNext={this.state.isNext}>
-                {item.element}
-            </Item>
-        ));
+        const { children } = this.props;
+        return children.map((child, index) => {
+            return (
+                <Item key={index} index={index} activeIndex={this.state.activeIndex} isNext={this.state.isNext}>
+                    {child}
+                </Item>
+            );
+        });
     }
     play() {}
     stop() {
@@ -29,14 +32,14 @@ class ImageGallery extends Component {
         this.interval = null;
     }
     renderDotItems() {
-        return this.props.source.map((item, index) => <DotItem key={index} index={index} activeIndex={this.state.activeIndex} onClicks={e => this.onGoto(e, index)} />);
+        return this.props.children.map((item, index) => <DotItem key={index} index={index} activeIndex={this.state.activeIndex} onClicks={e => this.onGoto(e, index)} />);
     }
     onPrev = e => {
         if (e) {
             this.stop();
         }
         let index = this.state.activeIndex;
-        let slidesLength = this.props.source.length;
+        let slidesLength = this.props.children.length;
         if (index < 1) {
             index = slidesLength;
         }
@@ -57,7 +60,7 @@ class ImageGallery extends Component {
             this.stop();
         }
         let index = this.state.activeIndex;
-        let slidesLength = this.props.source.length;
+        let slidesLength = this.props.children.length;
         if (index === slidesLength - 1) {
             index = -1;
         }
@@ -69,7 +72,6 @@ class ImageGallery extends Component {
     };
     render() {
         const { infinite, autoplay, autoplaySpeed } = this.props;
-
         return (
             <div className="gallery-section">
                 <ul className="content-section">{this.renderItem()}</ul>
@@ -91,28 +93,5 @@ ImageGallery.propTypes = {
     autoplay: PropTypes.bool.isRequired,
     autoplaySpeed: PropTypes.number.isRequired
 };
-ImageGallery.defaultProps = {
-    source: [
-        {
-            element: <img src="https://salt.tikicdn.com/ts/lp/8a/81/e2/4fdaacbe3a3c3fccfd8cdfe29d868f9f.png" />
-        },
-        {
-            element: (
-                <div style={{ paddingTop: '20px' }}>
-                    <span>This is html tag</span>
-                </div>
-            )
-        },
-        {
-            element: <img src="https://salt.tikicdn.com/ts/lp/53/c8/9b/22b09f264276653d69c0665ed525830f.png" />
-        },
-        {
-            element: (
-                <div style={{ paddingTop: '20px' }}>
-                    <span>This is html tag seconds</span>
-                </div>
-            )
-        }
-    ]
-};
+ImageGallery.defaultProps = {};
 export default ImageGallery;
