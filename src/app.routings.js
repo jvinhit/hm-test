@@ -2,13 +2,12 @@ import React from 'react';
 import CountDown from './components/countdown';
 import ImageGallery from './components/imagegallery';
 const currentDate = new Date();
-const year = currentDate.getMonth() === 11 && currentDate.getDate() > 23 ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
 class RouteConfigs extends React.Component {
     render() {
         return (
             <div className="wrapper">
                 <div className="container">
-                    <CountDown date={`${year}-12-06T00:00:00`} />
+                    <CountDown />
                     <ImageGallery infinite={true} autoplay={true} autoplaySpeed={1000}>
                         <img src="https://salt.tikicdn.com/ts/lp/8a/81/e2/4fdaacbe3a3c3fccfd8cdfe29d868f9f.png" />
                         <div style={{ paddingTop: '20px' }}>
