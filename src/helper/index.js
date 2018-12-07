@@ -48,22 +48,21 @@ export const validators = {
     },
     validateAll: (year, month, day, hour, minute, seconds) => {
         const currentDate = new Date();
-
         if (year === currentDate.getFullYear()) {
             if (month < currentDate.getMonth() + 1) {
-                return 'Check all Pls';
+                return 'Check all inp time';
             } else if (month === currentDate.getMonth() + 1) {
                 if (day < currentDate.getDate()) {
-                    return 'Check all Pls';
+                    return 'Check all inp time';
                 } else if (day === currentDate.getDate()) {
                     if (hour < currentDate.getHours()) {
-                        return 'Check all Pls';
+                        return 'Check all inp time';
                     } else if (hour === currentDate.getHours()) {
                         if (minute < currentDate.getMinutes()) {
-                            return 'Check all Pls';
+                            return 'Check all inp time';
                         } else if (minute === currentDate.getMinutes()) {
                             if (seconds < currentDate.getSeconds() + 1) {
-                                return 'Check all Pls';
+                                return 'Check all inp time';
                             }
                         }
                     }

@@ -9,11 +9,11 @@ class CountDown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            year: 2019,
-            month: 12,
-            day: 7,
-            hour: 2,
-            minute: 16,
+            year: new Date().getFullYear() + 1,
+            month: 1,
+            day: 1,
+            hour: 0,
+            minute: 0,
             seconds: 0,
             remainTime: {
                 year: 0,
@@ -28,10 +28,11 @@ class CountDown extends Component {
             messageDone: ''
         };
     }
-    componentDidMount() {}
+    componentDidMount() {
+        this.validate();
+    }
 
     validate = () => {
-        let isError = false;
         const errors = {};
         const validatorsYear = validators.validateYear(this.state.year);
         const validatorsMonth = validators.validateMonth(this.state.month);
@@ -61,17 +62,23 @@ class CountDown extends Component {
         } // for check if length
         if (validatorsAll) {
             errors.year = validatorsAll;
+            errors.month = validatorsAll;
+            errors.day = validatorsAll;
+            errors.minute = validatorsAll;
+            errors.hour = validatorsAll;
+            errors.seconds = validatorsAll;
         }
+
         this.setState({ errors });
+        console.log(this.state.errors);
     };
     onChangeDuration = e => {
         this.setState({ [e.target.name]: parseInt(e.target.value) });
     };
 
-    onStart = () => {
-        this.setState({ isRunning: true });
+    onStart = e => {
+        this.setState({ isRunning: true, messageDone: '' });
         this.validate();
-        debugger;
         if (Object.keys(this.state.errors).length > 0) {
             // có lỗi còn làm gì tiếp ?
         } else {
@@ -88,10 +95,19 @@ class CountDown extends Component {
         }
     };
     stop() {
-        this.setState({ messageDone: 'DONE' });
-        // this.setState({ errors: {} });
-        this.isRunning = false;
         clearInterval(this.interval);
+        this.setState({
+            messageDone: 'DONE',
+            isRunning: false,
+            remainTime: {
+                year: 0,
+                month: 0,
+                day: 0,
+                hour: 0,
+                minute: 0,
+                seconds: 0
+            }
+        });
     }
     renderCountDown() {
         const { remainTime } = this.state;
