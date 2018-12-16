@@ -19,7 +19,6 @@ class RouteConfigs extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isMenuHide: true };
-        this.testRef = React.createRef();
     }
     onToggleMenu(e) {
         e.stopPropagation();
@@ -33,10 +32,6 @@ class RouteConfigs extends React.Component {
             .then(dataUserId1 => console.log(dataUserId1))
             .catch(err => console.log(err));
         this.textSearch();
-        const a = new USer('Vinh');
-        a.sayHello();
-        a.name = ' a';
-        console.log(a);
     }
     promiseUseCase() {
         const url = 'https://jsonplaceholder.typicode.com/posts';
