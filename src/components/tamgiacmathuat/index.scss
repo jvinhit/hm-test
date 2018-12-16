@@ -1,0 +1,88 @@
+@import "../../assets/variable";
+
+.menu-wrapper {
+    box-sizing: border-box;
+
+    .ul-menu {
+        list-style: none;
+        box-sizing: border-box;
+
+        .li-menu-item {
+            list-style-type: none;
+            display: inline-block;
+            box-sizing: border-box;
+
+            .parrent {
+                position: relative;
+                border: 1px solid white;
+                box-sizing: border-box;
+
+                &:hover {
+                    .drop-down {
+                        display: block;
+                    }
+                }
+
+                > a {
+                    display: block;
+                    padding: 5px 20px;
+                    text-decoration: none;
+                }
+
+                .drop-down {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    width: 100%;
+                    padding-top: 2px;
+
+                    > ul {
+                        > li {
+                            position: relative;
+
+                            &:hover {
+                                .sub-menu {
+                                    display: block;
+                                }
+
+                                .mini-zone {
+                                    display: block;
+                                }
+                            }
+
+                            a {
+                                text-decoration: none;
+                            }
+                        }
+
+                        .mini-zone {
+                            position: absolute;
+                            width: 15%;
+                            height: 100%;
+                            z-index: 1;
+                            background: red;
+                            top: 100%;
+                            right: 0;
+                            display: none;
+                        }
+                    }
+
+                    .sub-menu {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        left: 90%;
+                        padding-left: 10%;
+
+                        // border: 1px solid red;
+                        width: 200px;
+
+                        ul {
+                            li {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

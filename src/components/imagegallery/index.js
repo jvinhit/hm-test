@@ -8,8 +8,24 @@ class ImageGallery extends Component {
     constructor(props) {
         super(props);
         this.state = { activeIndex: 0, isNext: true };
+        console.log('1. constructor');
+    }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     return null;
+    // }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('. shouldComponentUpdate');
+    //     return false;
+    // }
+
+    // static getSnapshotBeforeUpdate(prevProps, prevState) {
+    //     console.log('. getSnapshotBeforeUpdate');
+    // }
+    componentDidUpdate() {
+        console.log('. componentDidUpdate');
     }
     componentDidMount() {
+        console.log('3. constructor');
         if (this.props.infinite) {
             this.interval = setInterval(() => {
                 this.onNext();
@@ -72,6 +88,7 @@ class ImageGallery extends Component {
     };
     render() {
         const { infinite, autoplay, autoplaySpeed } = this.props;
+        console.log('RENDERCALLED');
         return (
             <div className="gallery-section">
                 <ul className="content-section">{this.renderItem()}</ul>
