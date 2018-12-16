@@ -14,6 +14,7 @@ import axios from 'axios';
 import Search from './components/searchbox';
 import TamGiacMathuat from './components/tamgiacmathuat';
 import Calculator from './components/liftingstateup';
+import LazyLoadimageComponent from './components/lazyloadimage';
 class RouteConfigs extends React.Component {
     constructor(props) {
         super(props);
@@ -32,6 +33,10 @@ class RouteConfigs extends React.Component {
             .then(dataUserId1 => console.log(dataUserId1))
             .catch(err => console.log(err));
         this.textSearch();
+        const a = new USer('Vinh');
+        a.sayHello();
+        a.name = ' a';
+        console.log(a);
     }
     promiseUseCase() {
         const url = 'https://jsonplaceholder.typicode.com/posts';
@@ -71,6 +76,7 @@ class RouteConfigs extends React.Component {
             xhr.send();
         });
     }
+
     render() {
         return (
             <div className="wrapper">
@@ -116,9 +122,27 @@ class RouteConfigs extends React.Component {
                             <Calculator />
                         </div>
                     </div>
+                    <LazyLoadimageComponent />
                 </div>
             </div>
         );
+    }
+}
+class USer {
+    constructor(name) {
+        this._name = name;
+    }
+    get name() {
+        return this._name;
+    }
+    set name(value) {
+        if (value.length < 2) {
+            console.log('Name is too short.');
+        }
+        this._name = name;
+    }
+    sayHello() {
+        return `${this._name} Say Hello`;
     }
 }
 export default RouteConfigs;

@@ -8,7 +8,7 @@ class ImageGallery extends Component {
     constructor(props) {
         super(props);
         this.state = { activeIndex: 0, isNext: true };
-        console.log('1. constructor');
+        // console.log('1. constructor');
     }
     // static getDerivedStateFromProps(nextProps, prevState) {
     //     return null;
@@ -22,10 +22,10 @@ class ImageGallery extends Component {
     //     console.log('. getSnapshotBeforeUpdate');
     // }
     componentDidUpdate() {
-        console.log('. componentDidUpdate');
+        // console.log('. componentDidUpdate');
     }
     componentDidMount() {
-        console.log('3. constructor');
+        // console.log('3. constructor');
         if (this.props.infinite) {
             this.interval = setInterval(() => {
                 this.onNext();
@@ -36,7 +36,12 @@ class ImageGallery extends Component {
         const { children } = this.props;
         return children.map((child, index) => {
             return (
-                <Item key={index} index={index} activeIndex={this.state.activeIndex} isNext={this.state.isNext}>
+                <Item
+                    key={index}
+                    index={index}
+                    activeIndex={this.state.activeIndex}
+                    isNext={this.state.isNext}
+                >
                     {child}
                 </Item>
             );
@@ -48,7 +53,14 @@ class ImageGallery extends Component {
         this.interval = null;
     }
     renderDotItems() {
-        return this.props.children.map((item, index) => <DotItem key={index} index={index} activeIndex={this.state.activeIndex} onClicks={e => this.onGoto(e, index)} />);
+        return this.props.children.map((item, index) => (
+            <DotItem
+                key={index}
+                index={index}
+                activeIndex={this.state.activeIndex}
+                onClicks={e => this.onGoto(e, index)}
+            />
+        ));
     }
     onPrev = e => {
         if (e) {
@@ -88,7 +100,7 @@ class ImageGallery extends Component {
     };
     render() {
         const { infinite, autoplay, autoplaySpeed } = this.props;
-        console.log('RENDERCALLED');
+        // console.log('RENDERCALLED');
         return (
             <div className="gallery-section">
                 <ul className="content-section">{this.renderItem()}</ul>
