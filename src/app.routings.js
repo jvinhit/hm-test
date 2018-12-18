@@ -123,21 +123,5 @@ class RouteConfigs extends React.Component {
         );
     }
 }
-class USer {
-    constructor(name) {
-        this._name = name;
-    }
-    get name() {
-        return this._name;
-    }
-    set name(value) {
-        if (value.length < 2) {
-            console.log('Name is too short.');
-        }
-        this._name = name;
-    }
-    sayHello() {
-        return `${this._name} Say Hello`;
-    }
-}
+
 export default RouteConfigs;
