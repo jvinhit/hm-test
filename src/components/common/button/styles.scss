@@ -2,10 +2,18 @@
 
 .button-wrapper {
     text-align: center;
-    padding: 20px;
+    padding: 5px 20px;
+
+    &.aleft {
+        text-align: left;
+    }
+
+    &.aright {
+        text-align: right;
+    }
 
     .btn {
-        padding: 10px 20px;
+        padding: 7px 20px;
         border: none;
         color: $color_header;
 

@@ -1,0 +1,134 @@
+@import "../../../assets/core";
+
+.post-wrapper {
+    position: relative;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    overflow: hidden;
+
+    &.focused {
+        .cheat-pg {
+            z-index: 1;
+            opacity: .3;
+        }
+
+        .post-action, .post-body, .post-confirm {
+            z-index: 2;
+        }
+    }
+
+    .cheat-pg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000000;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+        z-index: -1;
+    }
+
+    .post-action {
+        background-color: #f6f7f9;
+        position: relative;
+
+        .update-menu {
+            position: absolute;
+            right: 12px;
+            top: 8px;
+            z-index: 2;
+
+            // .dropdown-wrapper {
+            // position: relative;
+
+            span {
+                font-weight: bold;
+                color: #e2e2e2;
+                font-size: 18px;
+                cursor: pointer;
+
+                &:hover {
+                    color: black;
+                }
+            }
+
+            // }
+       
+        }
+    }
+
+    .float-left {
+        position: relative;
+        float: left;
+    }
+
+    .post-body {
+        padding: 12px;
+        position: relative;
+        background-color: #fff;
+        border-top: 2px solid #e2e2e2;
+        box-sizing: border-box;
+        display: flex;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 55px;
+            top: -8px;
+            border-bottom: 8px solid #e2e2e2;
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+        }
+
+        .avatar {
+            width: 40px;
+            margin-right: 12px;
+
+            img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                border-radius: 50%;
+                display: block;
+                background-color: #aaa;
+                overflow: hidden;
+            }
+        }
+
+        .input-content {
+            position: relative;
+            float: left;
+            flex-grow: 1;
+
+            textarea {
+                width: 100%;
+                box-sizing: border-box;
+                border: none;
+                resize: none;
+                min-height: 40px;
+                padding: 12px 0;
+                overflow: hidden;
+                background: none;
+                outline: none;
+                box-shadow: none;
+                font-size: 16px;
+                line-height: 1.5;
+                transition: min-height .3s ease-in-out;
+                word-wrap: normal;
+            }
+        }
+    }
+
+    .post-confirm {
+        position: relative;
+        padding: 0px 12px;
+        border-top: 2px solid #e2e2e2;
+        background-color: #fff;
+        text-align: right;
+
+        button.btn {
+            text-align: right;
+        }
+    }
+}

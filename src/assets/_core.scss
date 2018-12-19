@@ -1,6 +1,7 @@
-@import './reset';
+@import "./reset";
+
 .clearfix {
-    &:after{
+    &:after, &::before {
         content: '';
         display: table;
         clear: both;

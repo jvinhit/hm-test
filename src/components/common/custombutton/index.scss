@@ -53,8 +53,6 @@ $draw: "draw";
     &:before {
         top: 0;
         left: 0;
-        background-color: black ;
-        z-index: -1;
     }
 
     // And this the bottom & left borders (expands left, then up)

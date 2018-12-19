@@ -1,12 +1,6 @@
 import React from 'react';
 import CountDown from './components/countdown';
 import ImageGallery from './components/imagegallery';
-const currentDate = new Date();
-const year =
-    currentDate.getMonth() === 11 && currentDate.getDate() > 23
-        ? currentDate.getFullYear() + 1
-        : currentDate.getFullYear();
-
 import { CustomButton } from './components/common/custombutton';
 import { ToggleMenu } from './components/common/togglemenu';
 import { Menu } from './components/common/menu';
@@ -15,6 +9,11 @@ import Search from './components/searchbox';
 import TamGiacMathuat from './components/tamgiacmathuat';
 import Calculator from './components/liftingstateup';
 import LazyLoadimageComponent from './components/lazyloadimage';
+const currentDate = new Date();
+const year =
+    currentDate.getMonth() === 11 && currentDate.getDate() > 23
+        ? currentDate.getFullYear() + 1
+        : currentDate.getFullYear();
 class RouteConfigs extends React.Component {
     constructor(props) {
         super(props);
@@ -31,7 +30,6 @@ class RouteConfigs extends React.Component {
             .then(response => response.filter(item => item.userId === 1))
             .then(dataUserId1 => console.log(dataUserId1))
             .catch(err => console.log(err));
-        this.textSearch();
     }
     promiseUseCase() {
         const url = 'https://jsonplaceholder.typicode.com/posts';
@@ -49,13 +47,7 @@ class RouteConfigs extends React.Component {
             a.send();
         });
     }
-    textSearch() {
-        const listStrings = ['Apple', 'Huwei', 'Samsung', 'Nokia', 'Xiaomi', 'BPhone', 'Vin Phone'];
-        const query = 'a';
-        let strs = 'nguyen van vinh v';
-        const newArr = listStrings.splice(1, 0, 'An Cooong');
-        console.log(listStrings);
-    }
+
     callApi(url, method) {
         return new Promise((resolve, reject) => {
             var xhr = new XMLHttpRequest();
@@ -96,28 +88,24 @@ class RouteConfigs extends React.Component {
                             <CustomButton classname="meet draw" text="Spin" />
                             <CustomButton classname="meet draw" text="Draw Meet" />
                         </div>
-                        <div className="menu-container">
-                            <ToggleMenu onClick={e => this.onToggleMenu(e)}>
-                                <Menu
-                                    isHide={this.state.isMenuHide}
-                                    source={[
-                                        { link: '#home', text: 'Home' },
-                                        { link: '#home', text: 'Home' },
-                                        { link: '#home', text: 'Home' },
-                                        { link: '#home', text: 'Home' }
-                                    ]}
-                                />
-                            </ToggleMenu>
-                            <div className="tam-giac">
-                                <TamGiacMathuat />
-                            </div>
-                        </div>
-                        <div style={{ paddingBottom: '200px' }}>{/* <Search /> */}</div>
-                        <div>
-                            <Calculator />
-                        </div>
                     </div>
                     <LazyLoadimageComponent />
+                    <div className="menu-container">
+                        <ToggleMenu onClick={e => this.onToggleMenu(e)}>
+                            <Menu
+                                isHide={this.state.isMenuHide}
+                                source={[
+                                    { link: '#home', text: 'Home' },
+                                    { link: '#home', text: 'Home' },
+                                    { link: '#home', text: 'Home' },
+                                    { link: '#home', text: 'Home' }
+                                ]}
+                            />
+                        </ToggleMenu>
+                        <div className="tam-giac">
+                            <TamGiacMathuat />
+                        </div>
+                    </div>
                 </div>
             </div>
         );

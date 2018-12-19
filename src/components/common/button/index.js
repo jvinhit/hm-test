@@ -8,7 +8,7 @@ const Button = props => {
         <div className={`button-wrapper ${props.wrapClass ? props.wrapClass : null}`}>
             <button
                 disabled={props.disabled ? props.disabled : null}
-                className={`btn ${cssClass ? cssClass : null}`}
+                className={`btn ${cssClass ? cssClass : ''}`}
                 type={type}
                 onClick={onClick ? onClick : null}
             >
