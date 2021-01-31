@@ -1,13 +1,13 @@
 {
   "main.css": "/hm-test/static/css/main.5c43f917.chunk.css",
-  "main.js": "/hm-test/static/js/main.a2e37190.chunk.js",
-  "main.js.map": "/hm-test/static/js/main.a2e37190.chunk.js.map",
+  "main.js": "/hm-test/static/js/main.1b000ea6.chunk.js",
+  "main.js.map": "/hm-test/static/js/main.1b000ea6.chunk.js.map",
   "static/js/1.5be99a1d.chunk.js": "/hm-test/static/js/1.5be99a1d.chunk.js",
   "static/js/1.5be99a1d.chunk.js.map": "/hm-test/static/js/1.5be99a1d.chunk.js.map",
   "runtime~main.js": "/hm-test/static/js/runtime~main.41c4ed98.js",
   "runtime~main.js.map": "/hm-test/static/js/runtime~main.41c4ed98.js.map",
   "static/css/main.5c43f917.chunk.css.map": "/hm-test/static/css/main.5c43f917.chunk.css.map",
   "index.html": "/hm-test/index.html",
-  "precache-manifest.020c6e7aae8abae18e9f628b415de230.js": "/hm-test/precache-manifest.020c6e7aae8abae18e9f628b415de230.js",
+  "precache-manifest.3f39491a0bea62c0c024c91267484b43.js": "/hm-test/precache-manifest.3f39491a0bea62c0c024c91267484b43.js",
   "service-worker.js": "/hm-test/service-worker.js"
 }
