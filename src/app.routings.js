@@ -1,14 +1,16 @@
-import React from "react";
+import Calculator from "./components/liftingstateup";
 import CountDown from "./components/countdown";
-import ImageGallery from "./components/imagegallery";
 import { CustomButton } from "./components/common/custombutton";
-import { ToggleMenu } from "./components/common/togglemenu";
+import ImageGallery from "./components/imagegallery";
+import LazyLoadimageComponent from "./components/lazyloadimage";
 import { Menu } from "./components/common/menu";
-import axios from "axios";
+import React from "react";
 import Search from "./components/searchbox";
 import TamGiacMathuat from "./components/tamgiacmathuat";
-import Calculator from "./components/liftingstateup";
-import LazyLoadimageComponent from "./components/lazyloadimage";
+import { ToggleMenu } from "./components/common/togglemenu";
+import UserList from './components/sound'
+import axios from "axios";
+
 const currentDate = new Date();
 const year =
   currentDate.getMonth() === 11 && currentDate.getDate() > 23
@@ -68,6 +70,7 @@ class RouteConfigs extends React.Component {
     return (
       <div className="wrapper">
         <div className="container">
+          <UserList users="vinh"></UserList>
           <CountDown date={`${year}-12-06T00:00:00`} />
           <ImageGallery infinite={true} autoplay={true} autoplaySpeed={1000}>
             <img src="https://salt.tikicdn.com/ts/lp/8a/81/e2/4fdaacbe3a3c3fccfd8cdfe29d868f9f.png" />
@@ -81,7 +84,7 @@ class RouteConfigs extends React.Component {
             asd
           </ImageGallery>
           <div className="common">
-            <div style={{ "text-align": "center" }}>
+            <div>
               <CustomButton classname="draw" text="Draw" />
               <CustomButton classname="meet draw" text="Draw Meet" />
             </div>
